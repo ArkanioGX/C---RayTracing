@@ -43,7 +43,7 @@ int main()
 {
     //Resolution
     double resolution = 16.0 / 9.0;
-    int width = 1000, height = static_cast<int>(width / resolution);
+    int width = 1920, height = static_cast<int>(width / resolution);
     height = std::max(1, height);
 
     //Viewport
@@ -70,7 +70,7 @@ int main()
     world.Add(make_shared<Sphere>(Position(0, 0, -1), 0.5));
     world.Add(make_shared<Sphere>(Position(0, -100.5, -1), 100));
 
-    Camera camera(width, resolution,100);
+    Camera camera(width, resolution,100, 50);
     camera.Render(world);
     return 0;
 }

@@ -13,7 +13,7 @@ void Camera::Render(const Hittable& rWorld)
             for (int sample = 0; sample < sampleCount; sample++)
             {
                 Ray ray = GetRay(x, y);
-                pixel += RayColor(ray, rWorld);
+                pixel += RayColor(ray,maxBounces, rWorld);
             }
 
             WriteColor(std::cout, pixel, sampleCount);
@@ -48,11 +48,14 @@ void Camera::Initialize()
 
 }
 
-Color Camera::RayColor(const Ray& rRay, const Hittable& rWorld) const
+Color Camera::RayColor(const Ray& rRay, int bouncesLeft, const Hittable& rWorld) const
 {
     HitInfo hitInfo;
-    if (rWorld.Hit(rRay, Interval(0, infinity), hitInfo)) {
-        return 0.5 * (hitInfo.normal + Color(1, 1, 1));
+    if (bouncesLeft <= 0) return Color(0, 0, 0);
+    if (rWorld.Hit(rRay, Interval(0.001, infinity), hitInfo)) {
+        Vector3 direction = hitInfo.normal + RandomUnitVector();
+        return 0.9 * RayColor(Ray(hitInfo.coordinates, direction), bouncesLeft - 1,rWorld);
+
     }
     Vector3 unitDirection = Unit(rRay.GetDirection());
     double blue = 0.5 * (unitDirection.y + 1.0);
@@ -76,8 +79,8 @@ Ray Camera::GetRay(int x, int y) const
 Vector3 Camera::PixelSampleSquared() const
 {
     //Returns a random point in the square around a pixel at the origin
-    double pX = -0.5 + Random();
-    double pY = -0.5 + Random();
+    double pX = -0.5 + RandomDouble();
+    double pY = -0.5 + RandomDouble();
     return (pX * pixelDeltaX) + (pY * pixelDeltaY);
 }
 
