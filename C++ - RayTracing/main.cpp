@@ -7,6 +7,7 @@
 #include "Utility.h"
 #include "HittableCollection.h"
 #include "Sphere.h"
+#include "Camera.h" 
 
 double HitSphere(const Position& rCenter, double radius, const Ray& rRay)
 {
@@ -42,7 +43,7 @@ int main()
 {
     //Resolution
     double resolution = 16.0 / 9.0;
-    int width = 400, height = static_cast<int>(width / resolution);
+    int width = 1000, height = static_cast<int>(width / resolution);
     height = std::max(1, height);
 
     //Viewport
@@ -67,27 +68,10 @@ int main()
     //World
     HittableCollection world;
     world.Add(make_shared<Sphere>(Position(0, 0, -1), 0.5));
-    world.Add(make_shared<Sphere>(Position(0, -100.5, 0), 100));
+    world.Add(make_shared<Sphere>(Position(0, -100.5, -1), 100));
 
-
-    //Image
-    std::cout << "P3\n" << width << ' ' << height << "\n255\n";
-    for (int y = 0; y < height; y++) {
-        for (int x = 0; x < width; x++)
-        {
-            std::clog << "Progress : " << (y * 100 / height) << " %\n" << std::flush;
-
-            Vector3 pixelCenter = originPixelLocation + (x * pixelDeltaX) + (y * pixelDeltaY);
-            Vector3 rayDirection = pixelCenter - cameraCenter;
-            Ray ray(cameraCenter, rayDirection);
-
-            Color pixel = RayColor(ray, world);
-
-            WriteColor(std::cout, pixel);
-
-        }
-    }
-    std::clog << "Done! You can open your file now :)\n";
+    Camera camera(width, resolution,100);
+    camera.Render(world);
     return 0;
 }
 

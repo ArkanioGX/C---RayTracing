@@ -1,13 +1,21 @@
 #pragma once
 #include "Vector3.h"
+#include "Interval.h"
 
 //New Vector3 alias for color
 using Color = Vector3;
 
-void WriteColor(std::ostream& rOut, Color pixel)
+inline void WriteColor(std::ostream& out, Color pixel, int sampleCount)
 {
+    double scale = 1.0 / sampleCount;
+    double r = pixel.x * scale;
+    double g = pixel.y * scale;
+    double b = pixel.z * scale;
+
     // Write the translated [0,255] value of each color component.
-    rOut << static_cast<int>(255.999 * pixel.x) << ' '
-        << static_cast<int>(255.999 * pixel.y) << ' '
-        << static_cast<int>(255.999 * pixel.z) << '\n';
+    static const Interval intensity(0.000, 0.999);
+    out << static_cast<int>(255.999 * intensity.Clamp(r)) << ' '
+        << static_cast<int>(255.999 * intensity.Clamp(g)) << ' '
+        << static_cast<int>(255.999 * intensity.Clamp(b)) << '\n';
 }
+
