@@ -4,6 +4,7 @@
 #include <limits>
 #include <memory>
 #include <cstdlib>
+#include "Vector3.h"
 
 using std::shared_ptr;
 using std::make_shared;

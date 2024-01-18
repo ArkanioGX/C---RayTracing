@@ -53,8 +53,14 @@ Color Camera::RayColor(const Ray& rRay, int bouncesLeft, const Hittable& rWorld)
     HitInfo hitInfo;
     if (bouncesLeft <= 0) return Color(0, 0, 0);
     if (rWorld.Hit(rRay, Interval(0.001, infinity), hitInfo)) {
-        Vector3 direction = hitInfo.normal + RandomUnitVector();
-        return 0.9 * RayColor(Ray(hitInfo.coordinates, direction), bouncesLeft - 1,rWorld);
+        Ray scattered;
+        Color attenuation;
+        if (hitInfo.material->Scatter(rRay, hitInfo, attenuation, scattered))
+        {
+            return attenuation * RayColor(scattered, bouncesLeft - 1, rWorld);
+        }
+        return Color(0, 0, 0);
+
 
     }
     Vector3 unitDirection = Unit(rRay.GetDirection());

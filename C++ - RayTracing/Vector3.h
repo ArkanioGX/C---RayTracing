@@ -54,6 +54,11 @@ public:
         return Vector3(RandomDouble(min, max), RandomDouble(min, max), RandomDouble(min, max));
     }
 
+    bool NearZero() const
+    {
+        double s = 1e-18;
+        return fabs(x < s) && fabs(y < s) && fabs(z < s);
+    }
 
 };
 
@@ -139,4 +144,8 @@ inline Vector3 RandomOnHemisphere(const Vector3& normal)
     return -onUnitSphere;
 }
 
+inline Vector3 Reflect(const Vector3& direction, const Vector3& normal)
+{
+    return direction - 2 * Dot(direction, normal) * normal;
+}
 

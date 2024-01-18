@@ -33,3 +33,7 @@
 
 *.vsidx
 *.ipch
+*.tlog
+*.idb
+.vs/C++ - RayTracing/v17/Browse.VC.db
+.vs/C++ - RayTracing/v17/.suo

@@ -1,5 +1,10 @@
 ﻿C:\VisualStudio\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (C++ - RayTracing.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Camera.cpp
+  MetalMaterial.cpp
   main.cpp
+C:\Users\mollet.clarence\source\repos\C++ - RayTracing\C++ - RayTracing\main.cpp(107,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\mollet.clarence\source\repos\C++ - RayTracing\C++ - RayTracing\main.cpp(108,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\mollet.clarence\source\repos\C++ - RayTracing\C++ - RayTracing\main.cpp(109,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\mollet.clarence\source\repos\C++ - RayTracing\C++ - RayTracing\main.cpp(121,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\mollet.clarence\source\repos\C++ - RayTracing\C++ - RayTracing\main.cpp(122,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
   Generating Code...
   C++ - RayTracing.vcxproj -> C:\Users\mollet.clarence\source\repos\C++ - RayTracing\x64\Debug\CPP-Raytracing.exe
