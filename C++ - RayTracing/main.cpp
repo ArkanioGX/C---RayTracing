@@ -40,7 +40,7 @@ int main()
 {
     //Resolution
     double resolution = 16.0 / 9.0;
-    int width = 400, height = static_cast<int>(width / resolution);
+    int width = 1920, height = static_cast<int>(width / resolution);
     height = std::max(1, height);
 
     //Viewport
@@ -68,7 +68,7 @@ int main()
     shared_ptr<Material> groundMat = make_shared<LambertianMaterial>(Color(0.8, 0.8, 0.0));
     shared_ptr<Material> centerMat = make_shared<DialectricMaterial>(1.5);
     shared_ptr<Material> leftMat = make_shared<MetalMaterial>(Color(0.2, 0.3, 0.5), 1.0);
-    shared_ptr<Material> rightMat = make_shared<BismuthMaterial>(Color(0.5, 0.3, 0.2), 1.0, 2);
+    shared_ptr<Material> rightMat = make_shared<BismuthMaterial>(Color(0.2, 0.2, 0.2), 1.0, 2);
 
 
     world.Add(make_shared<Sphere>(Position(0, -100.5, -1), 100, groundMat));
