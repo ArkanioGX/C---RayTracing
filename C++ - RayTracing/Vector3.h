@@ -149,3 +149,13 @@ inline Vector3 Reflect(const Vector3& direction, const Vector3& normal)
     return direction - 2 * Dot(direction, normal) * normal;
 }
 
+inline Vector3 Refract(const Vector3& unitVector, const Vector3& normal, double refractionRatio)
+{
+    double cosTheta = fmin(Dot(-unitVector, normal), 1.0);
+    Vector3 rayOutPerpendicular = refractionRatio * (unitVector + cosTheta * normal);
+    Vector3 rayOutParallel = -sqrt(fabs(1.0 - rayOutPerpendicular.SquaredLength())) * normal;
+    return rayOutPerpendicular + rayOutParallel;
+}
+
+
+

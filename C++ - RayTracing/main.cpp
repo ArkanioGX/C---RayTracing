@@ -10,6 +10,8 @@
 #include "Camera.h" 
 #include "MetalMaterial.h"
 #include "LambertianMaterial.h"
+#include "DialectricMaterial.h"
+#include "BismuthMaterial.h"
 #include <random>
 
 void createRandomScene(HittableCollection* world, int SphereN, bool hasGround);
@@ -31,16 +33,6 @@ double HitSphere(const Position& rCenter, double radius, const Ray& rRay)
 }
 
 
-Color RayColor(const Ray& rRay, const Hittable& rWorld)
-{
-    HitInfo hitInfo;
-    if (rWorld.Hit(rRay, Interval(0, infinity), hitInfo)) {
-        return 0.5 * (hitInfo.normal + Color(1, 1, 1));
-    }
-    Vector3 unitDirection = Unit(rRay.GetDirection());
-    double blue = 0.5 * (unitDirection.y + 1.0);
-    return (1.0 - blue) * Color(1.0, 1.0, 1.0) + blue * Color(0.5, 0.7, 1.0);
-}
 
 
 
@@ -74,9 +66,9 @@ int main()
     HittableCollection world;
 
     shared_ptr<Material> groundMat = make_shared<LambertianMaterial>(Color(0.8, 0.8, 0.0));
-    shared_ptr<Material> centerMat = make_shared<LambertianMaterial>(Color(0.7, 0.3, 0.3));
+    shared_ptr<Material> centerMat = make_shared<DialectricMaterial>(1.5);
     shared_ptr<Material> leftMat = make_shared<MetalMaterial>(Color(0.2, 0.3, 0.5), 1.0);
-    shared_ptr<Material> rightMat = make_shared<MetalMaterial>(Color(0.5, 0.3, 0.2), 0.3);
+    shared_ptr<Material> rightMat = make_shared<BismuthMaterial>(Color(0.5, 0.3, 0.2), 1.0, 2);
 
 
     world.Add(make_shared<Sphere>(Position(0, -100.5, -1), 100, groundMat));

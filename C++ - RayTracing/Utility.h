@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include "Vector3.h"
 
+
 using std::shared_ptr;
 using std::make_shared;
 using std::sqrt;
@@ -27,4 +28,5 @@ inline double RandomDouble(double min, double max)
 {
 	return min + (max - min) * RandomDouble();
 }
+
 

@@ -1,4 +1,5 @@
 #include "Camera.h"
+#include "BismuthMaterial.h"
 
 void Camera::Render(const Hittable& rWorld)
 {
@@ -57,12 +58,23 @@ Color Camera::RayColor(const Ray& rRay, int bouncesLeft, const Hittable& rWorld)
         Color attenuation;
         if (hitInfo.material->Scatter(rRay, hitInfo, attenuation, scattered))
         {
+            if (std::dynamic_pointer_cast<BismuthMaterial>(hitInfo.material) != nullptr) {
+                Color BismuthColor = normalColor(hitInfo.normal);
+                shared_ptr<BismuthMaterial> bm = std::dynamic_pointer_cast<BismuthMaterial>(hitInfo.material);
+                float r = 1 - (1 - attenuation.x) * (1 - BismuthColor.x * bm->getChromaP());
+                float g = 1 - (1 - attenuation.y) * (1 - BismuthColor.y * bm->getChromaP());
+                float b = 1 - (1 - attenuation.z) * (1 - BismuthColor.z * bm->getChromaP());
+
+                attenuation = Color(r, g, b);
+            }
             return attenuation * RayColor(scattered, bouncesLeft - 1, rWorld);
         }
         return Color(0, 0, 0);
 
 
     }
+
+    //Sky
     Vector3 unitDirection = Unit(rRay.GetDirection());
     double blue = 0.5 * (unitDirection.y + 1.0);
     return (1.0 - blue) * Color(1.0, 1.0, 1.0) + blue * Color(0.5, 0.7, 1.0);

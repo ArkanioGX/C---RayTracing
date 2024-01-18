@@ -25,3 +25,7 @@ inline void WriteColor(std::ostream& out, Color pixel, int sampleCount)
         << static_cast<int>(255.999 * intensity.Clamp(b)) << '\n';
 }
 
+inline Color normalColor(const Vector3& normal) {
+    return 0.5 * (normal + Color(1, 1, 1));
+}
+

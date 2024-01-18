@@ -128,7 +128,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BismuthMaterial.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="DialectricMaterial.cpp" />
     <ClCompile Include="HittableCollection.cpp" />
     <ClCompile Include="LambertianMaterial.cpp" />
     <ClCompile Include="main.cpp" />
@@ -136,8 +138,10 @@
     <ClCompile Include="Sphere.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BismuthMaterial.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Color.h" />
+    <ClInclude Include="DialectricMaterial.h" />
     <ClInclude Include="Hittable.h" />
     <ClInclude Include="HittableCollection.h" />
     <ClInclude Include="Interval.h" />
