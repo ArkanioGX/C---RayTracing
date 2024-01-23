@@ -16,4 +16,6 @@ public:
 	void Add(std::shared_ptr<Hittable> hittable) { mPool.push_back(hittable); }
 
 	bool Hit(const Ray& rRay, Interval rayTime, HitInfo& hitInfo) const override;
+
+	int Length() { return mPool.size(); }
 };

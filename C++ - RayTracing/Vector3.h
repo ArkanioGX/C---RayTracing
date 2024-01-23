@@ -128,6 +128,17 @@ inline Position RandomInUnitSphere()
     }
 }
 
+inline Vector3 RandomInUnitDisk()
+{
+    while (true)
+    {
+        Vector3 position = Vector3(RandomDouble(-1, 1), RandomDouble(-1, 1), 0);
+        if (position.SquaredLength() < 1)
+            return position;
+    }
+}
+
+
 inline Vector3 RandomUnitVector()
 {
     return Unit(RandomInUnitSphere());
