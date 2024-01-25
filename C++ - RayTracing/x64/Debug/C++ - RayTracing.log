@@ -1,5 +1,4 @@
-﻿C:\VisualStudio\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (C++ - RayTracing.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  main.cpp
-C:\Users\mollet.clarence\source\repos\C++ - RayTracing\C++ - RayTracing\HittableCollection.h(20,34): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\mollet.clarence\source\repos\C++ - RayTracing\C++ - RayTracing\BismuthMaterial.h(12,124): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  C++ - RayTracing.vcxproj -> C:\Users\mollet.clarence\source\repos\C++ - RayTracing\x64\Debug\CPP-Raytracing.exe
+﻿  main.cpp
+D:\Projects\ArtFX\Advanced-OpenGL-Starter-Project\C---RayTracing\C++ - RayTracing\HittableCollection.h(20,34): warning C4267: 'return' : conversion de 'size_t' en 'int', perte possible de données
+D:\Projects\ArtFX\Advanced-OpenGL-Starter-Project\C---RayTracing\C++ - RayTracing\BismuthMaterial.h(12,124): warning C4244: 'initialisation' : conversion de 'double' en 'float', perte possible de données
+  C++ - RayTracing.vcxproj -> D:\Projects\ArtFX\Advanced-OpenGL-Starter-Project\C---RayTracing\x64\Debug\CPP-Raytracing.exe
